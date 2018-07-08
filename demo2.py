@@ -81,6 +81,7 @@ while trial_number < num_conditions and not quit:
     trial_data = {'trial_num': trial_number,
                   'x': trial_condition.x,
                   'y': trial_condition.y,
+                  'color': trial_condition.color,
                   'isi': isi,
                   'presentation_time': presentation_time,
                   'catch_trial': False}
