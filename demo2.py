@@ -136,7 +136,11 @@ while trial_number < num_conditions and not quit:
         allKeys = event.getKeys()
         if len(allKeys) > 0:
             if 'j' in allKeys:
-                response = 'seen'
+                response = 'red'
+            elif 'k' in allKeys:
+                response = 'blue'
+            elif 'l' in allKeys:
+                response = 'purple'
             elif 'f' in allKeys:
                 response = 'not_seen'
             elif 'q' in allKeys:
@@ -148,6 +152,7 @@ while trial_number < num_conditions and not quit:
     win.flip()
     trial_data['response'] = response if response is not None else 'TIMEOUT'
     event.clearEvents()
+    save_file.write(str(trial_data) + '\n')
 
 save_file.close()
 
