@@ -57,3 +57,22 @@ experiment_notes: put your notes and ideas here!
 save_location: data
 ```
 
+## DEMOS:
+
+There are two demos for different tasks.
+
+### Demo1:
+
+This demo is a simple binary detection task. White dots are presented randomly on the screen. The user is expected to push 'f' for not seen and 'j' for seen (a stimulus may or may not appear on the screen).
+
+```
+bash runDemo1
+```
+
+### Demo2:
+
+This demo is a color detection task. Red, blue, or purple dots are presented randomly on the screen. The user is expected to push 'f' for not seen, 'j' for red, 'k' for blue, and 'l' for purple. A stimulus may or may not appear on the screen.
+
+```
+bash runDemo2
+```
