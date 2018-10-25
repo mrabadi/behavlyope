@@ -1,0 +1,14 @@
+isi_ms: 200, 300
+timeout_ms: 500
+presentation_time: 100, 200, 300
+x_size: 9
+y_size: 6
+grid_size: 3
+stimulus_radius: .5
+fixation_cross_size: 3
+prob_catch_trial: .1
+n_trials_per_location: 1
+distance_from_screen: 
+participant_id: 
+experiment_notes: put your notes and ideas here!
+save_location: data

@@ -4,7 +4,7 @@ def load_config(filename):
         for line in f:
             parsed = line.strip().split(":")
             if parsed[0] != '':
-                params[parsed[0]] = parsed[1]
+                config[parsed[0]] = parsed[1]
     return config
 
 def get_param(config, name, default):

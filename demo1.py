@@ -14,7 +14,6 @@ if len(sys.argv) == 2:
     if not os.path.exists(config_file):
         sys.exit('config file path %s does not exist'%config_file)
     config = util.load_config(config_file)
-
 params = defaults.load_params(config)
 
 if not os.path.exists(params['save_location']):
@@ -39,6 +38,7 @@ class condition(object):
 
 conditions = []
 fixation_cross_size = params['fixation_cross_size']
+print(fixation_cross_size)
 stimulus_radius = params['stimulus_radius']
 max_x = params['x_size'] - stimulus_radius
 min_x = -max_x

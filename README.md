@@ -27,7 +27,7 @@ the conda environment with `source activate behavelyope`.  Otherwise you can use
 If you are happy with the defaults, then you just need to navigate to the directory that you downloaded the files are run the following:
 
 ```bash
-bash behavlyope
+bash runDemo1
 ```
 
 ## Setting Parameters in the Config File:
@@ -35,7 +35,7 @@ bash behavlyope
 You can pass your own config file to behavelyope by running the following:
 
 ```bash
-bash behavlyope config.txt
+bash runDemo1 config.txt
 ```
 
 You can set your own experimental parameters in `config.txt`.

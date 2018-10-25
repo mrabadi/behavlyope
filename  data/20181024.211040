@@ -1,0 +1,5 @@
+params: {'y_size': 6, 'timeout_ms': 500, 'distance_from_screen': '', 'grid_size': 3, 'prob_catch_trial': 0.1, 'start_time': '20181024.211040', 'experiment_notes': ' put your notes and ideas here!', 'fixation_cross_size': 1.0, 'save_location': ' data', 'isi_ms': [200, 300], 'x_size': 9, 'presentation_time': [100, 200, 300], 'stimulus_radius': 0.5, 'participant_id': '', 'n_trials_per_location': 10}
+{'trial_num': 0, 'catch_trial': False, 'isi': 0.2, 'presentation_time': 300, 'y': -5.5, 'x': 3.5, 'response': 'TIMEOUT'}
+{'trial_num': 1, 'catch_trial': False, 'isi': 0.2, 'presentation_time': 100, 'y': -5.5, 'x': -2.5, 'response': 'TIMEOUT'}
+{'trial_num': 2, 'catch_trial': False, 'isi': 0.2, 'presentation_time': 300, 'y': -5.5, 'x': -2.5, 'response': 'TIMEOUT'}
+{'trial_num': 3, 'catch_trial': False, 'isi': 0.2, 'presentation_time': 300, 'y': -5.5, 'x': -5.5, 'response': 'TIMEOUT'}
