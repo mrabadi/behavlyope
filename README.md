@@ -71,7 +71,7 @@ bash runDemo1
 
 ### Demo2:
 
-This demo is a color detection task. Red, blue, or purple dots are presented randomly on the screen. The user is expected to push 'f' for not seen, 'j' for red, 'k' for blue, and 'l' for purple. A stimulus may or may not appear on the screen.
+This demo is a color detection task. Red, green, or yellow dots are presented randomly on the screen. The user is expected to push 'f' for not seen, 'j' for red, 'k' for green, and 'l' for yellow. A stimulus may or may not appear on the screen.
 
 ```
 bash runDemo2
