@@ -8,7 +8,7 @@ import defaults
 import numpy as np
 from psychopy import visual, core, event
 
-COLORS = ['red', 'blue', 'purple']
+COLORS = ['red', 'green', 'yellow']
 
 config = {}
 if len(sys.argv) == 2:
@@ -62,7 +62,7 @@ random.shuffle(conditions)  # shuffle the conditions
 
 # initialize window
 # TODO: This uses the 'testMonitor' and needs to be fixed!
-win = visual.Window([900,900], monitor="testMonitor", units="deg", color='black')
+win = visual.Window([900,900], monitor="testMonitor", units="deg", color='black', screen=params['screen_number'])
 fixation = visual.GratingStim(win, tex=None, mask='cross', sf=0, size=fixation_cross_size,
         name='fixation', autoLog=False)
 

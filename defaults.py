@@ -18,5 +18,6 @@ def load_params(config):
     params['participant_id'] = util.get_param(config, 'participant_id', 'test')
     params['experiment_notes'] = util.get_param(config, 'experiment_notes', 'No Notes Given')
     params['save_location'] = util.get_param(config, 'save_location', 'data').strip()
+    params['screen_number'] = int(util.get_param(config, 'screen_number', 0))
     return params
 

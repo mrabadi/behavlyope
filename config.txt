@@ -12,3 +12,4 @@ distance_from_screen:
 participant_id: 
 experiment_notes: put your notes and ideas here!
 save_location: data
+screen_number: 0
