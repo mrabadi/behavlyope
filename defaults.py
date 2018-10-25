@@ -17,6 +17,6 @@ def load_params(config):
     params['distance_from_screen'] = util.get_param(config, 'distance_from_screen', 3)
     params['participant_id'] = util.get_param(config, 'participant_id', 'test')
     params['experiment_notes'] = util.get_param(config, 'experiment_notes', 'No Notes Given')
-    params['save_location'] = util.get_param(config, 'save_location', 'data')
+    params['save_location'] = util.get_param(config, 'save_location', 'data').strip()
     return params
 

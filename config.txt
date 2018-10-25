@@ -5,7 +5,7 @@ x_size: 9
 y_size: 6
 grid_size: 3
 stimulus_radius: .5
-fixation_cross_size: 3
+fixation_cross_size: 1
 prob_catch_trial: .1
 n_trials_per_location: 1
 distance_from_screen: 

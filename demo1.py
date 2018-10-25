@@ -38,7 +38,6 @@ class condition(object):
 
 conditions = []
 fixation_cross_size = params['fixation_cross_size']
-print(fixation_cross_size)
 stimulus_radius = params['stimulus_radius']
 max_x = params['x_size'] - stimulus_radius
 min_x = -max_x
