@@ -135,6 +135,8 @@ while trial_number < num_conditions and not quit:
             else:
                 response = 'invalid'
         event.clearEvents()
+    print('\a')
+    fixation.draw() # keep fixation cross running
     win.flip()
     trial_data['response'] = response if response is not None else 'TIMEOUT'
     event.clearEvents()
