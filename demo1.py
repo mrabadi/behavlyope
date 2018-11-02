@@ -58,7 +58,7 @@ random.shuffle(conditions)  # shuffle the conditions
 
 # initialize window
 # TODO: This uses the 'testMonitor' and needs to be fixed!
-win = visual.Window([900,900], monitor="testMonitor", units="deg", screen=params['screen_number'])
+win = visual.Window([params['screen_x'],params['screen_y']], monitor="testMonitor", units="deg", screen=params['screen_number'], rgb=params['screen_rgb'])
 #fixation = visual.GratingStim(win, tex=None, mask='cross', sf=0, size=fixation_cross_size,
 #        name='fixation', autoLog=False)
 

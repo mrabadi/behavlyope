@@ -19,5 +19,8 @@ def load_params(config):
     params['experiment_notes'] = util.get_param(config, 'experiment_notes', 'No Notes Given')
     params['save_location'] = util.get_param(config, 'save_location', 'data').strip()
     params['screen_number'] = int(util.get_param(config, 'screen_number', 0))
+    params['screen_x'] = int(util.get_param(config, 'screen_x', 900))
+    params['screen_y'] = int(util.get_param(config, 'screen_y', 900))
+    params['screen_rgb'] = [int(c) for c in util.get_param(config, 'screen_rgb', "0, 0, 0").split(",")]
     return params
 

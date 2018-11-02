@@ -13,3 +13,6 @@ participant_id:
 experiment_notes: put your notes and ideas here!
 save_location: data
 screen_number: 0
+screen_x: 1200
+screen_y: 900
+screen_rgb: -1,-1,-1
