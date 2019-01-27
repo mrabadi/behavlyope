@@ -1,11 +1,12 @@
-conda update conda 
+#!/usr/bin/env bash
+
+conda update conda
 conda update anaconda
 conda update conda
 conda update anaconda
 conda config --add channels https://conda.binstar.org/erik
 conda install -c erik psychopy
-conda create -n behavlyope psychopy
+conda create -n behavlyope psychopy PyAudio
 source activate behavlyope 
 conda install -c conda-forge pyglet
 source deactivate behavlyope
-

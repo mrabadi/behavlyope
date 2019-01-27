@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source activate behavlyope
-python demo1.py $1
-

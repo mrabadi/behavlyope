@@ -1,18 +1,14 @@
 isi_ms: 200, 300
-timeout_ms: 500
+timeout_ms: 2000
 presentation_time: 100, 200, 300
-x_size: 9
-y_size: 6
-grid_size: 3
+x_size: 25
+y_size: 15
+grid_size: 5
 stimulus_radius: .5
 fixation_cross_size: 1
 prob_catch_trial: .1
-n_trials_per_location: 1
-distance_from_screen: 
-participant_id: 
-experiment_notes: put your notes and ideas here!
-save_location: data
-screen_number: 0
-screen_x: 1200
-screen_y: 900
-screen_rgb: -1,-1,-1
+n_trials_per_location: 3
+distance_from_screen: 50
+participant_id:
+experiment_notes: this is an experiment.
+save_location: /Users/priyanka/Desktop/data

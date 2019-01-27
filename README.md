@@ -11,71 +11,23 @@ Some say that the developer is an amblyope. He says he doesn't know.
 1. Get conda (python 2.7)
 2. Run the following commands:
 ```bash
-conda update conda 
-conda update anaconda
-conda config --add channels https://conda.binstar.org/erik
-conda install -c erik psychopy
-conda create -n behavelyope psychopy
+bash install.sh
 ```
 
 Done, you now have a conda environment called `behavelyope` that has everything you need.
 If you are silly enough to run components of this yourself, then you can go ahead and activate 
 the conda environment with `source activate behavelyope`.  Otherwise you can use the binaries.
 
-## Running the Experiment:
+## Running Perimetry Task
 
-If you are happy with the defaults, then you just need to navigate to the directory that you downloaded the files are run the following:
-
-```bash
-bash runDemo1
-```
-
-## Setting Parameters in the Config File:
-
-You can pass your own config file to behavelyope by running the following:
+You can run the perimetry task and specify the config file. First, cd into the behavlyope directory.
 
 ```bash
-bash runDemo1 config.txt
+git clone https://github.com/mrabadi/behavlyope.git && cd behavlyope
+bash perimetryTask -c config.txt
 ```
 
-You can set your own experimental parameters in `config.txt`.
-
-```text
-isi_ms: 200, 300
-timeout_ms: 500
-presentation_time: 100, 200, 300
-x_size: 9
-y_size: 6
-grid_size: 3
-stimulus_radius: 1.5
-fixation_cross_size: 1
-prob_catch_trial: .1
-n_trials_per_location: 10
-distance_from_screen: 
-participant_id: 
-experiment_notes: put your notes and ideas here!
-save_location: data
-```
-
-## DEMOS:
-
-There are two demos for different tasks.
-
-### Demo1:
-
-This demo is a simple binary detection task. White dots are presented randomly on the screen. The user is expected to push 'f' for not seen and 'j' for seen (a stimulus may or may not appear on the screen).
-
-```
-bash runDemo1
-```
-
-### Demo2:
-
-This demo is a color detection task. Red, green, or yellow dots are presented randomly on the screen. The user is expected to push 'f' for not seen, 'j' for red, 'k' for green, and 'l' for yellow. A stimulus may or may not appear on the screen.
-
-```
-bash runDemo2
-```
+Note, you can specify your own config file.
 
 ## Convering data to csv
 
