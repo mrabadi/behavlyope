@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+BEHAVELYOPE_PATH=$(pwd)
+ARGS="$*"
+
+source activate behavlyope
+export PYTHONPATH=$BEHAVELYOPE_PATH:$PYTHONPATH
+python tasks/color_task.py $ARGS

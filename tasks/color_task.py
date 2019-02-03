@@ -1,23 +1,68 @@
 import time
+import sys
 import argparse
 from task import Task
 from psychopy import event
 
 
-class PerimetryTask(Task):
+class ColorTask(Task):
     """
-    The perimetry task.
+    The color task.
     """
+
+    COLOR_MAP = {'red': (1, 0, 0),
+                 'green': (-1, 1, -1),
+                 'yellow': (1, 1, -1)}
 
     def get_stim_colors(self):
         """
-        Generate the stim colors for task (white).
-        :return: LIst of the stim colors.
+        Get the list of stim colors (red, green, yellow)
+        :return: list of stim colors.
         """
-        return ['white']
+        return ['red', 'green', 'yellow']
+
+    def calibrate_color(self, color):
+        self.state_machine.wait(.5)
+        self.state_machine.flip_window()
+        contrast = 1.0
+        step_size = 0.05
+        response = None
+        while response is not 'quit' and response is not 'done':
+            self.state_machine.set_stimulus_position(0, 0)
+            self.state_machine.stimulus.setUseShaders(True)
+            self.state_machine.stimulus.setLineColor(self.COLOR_MAP[color], colorSpace='rgb')
+            self.state_machine.stimulus.setFillColor(self.COLOR_MAP[color], colorSpace='rgb')
+            self.state_machine.stimulus.setContrast(contrast)
+            self.state_machine.draw_stimulus()
+            self.state_machine.flip_window()
+            all_keys = event.getKeys()
+            if len(all_keys) > 0:
+                if 'right' in all_keys:
+                    contrast += step_size
+                elif 'left' in all_keys:
+                    contrast -= step_size
+                elif 'q' in all_keys:
+                    response = 'quit'
+                elif 'enter' in all_keys or 'return' in all_keys:
+                    response = 'done'
+                else:
+                    response = None
+            event.clearEvents()
+            contrast = max(0.0, contrast)
+            contrast = min(1.0, contrast)
+        if response == 'quit':
+            sys.exit('user quit during calibration!')
+        if contrast == 0:
+            sys.exit('user calibrated stimulus to 0!')
+        self.state_machine.flip_window()
+        self.state_machine.wait(1)
+        return contrast
 
     def calibrate_stim(self):
-        return {'white': 1}
+        stim_contrasts = {}
+        for color in self.stim_colors:
+            stim_contrasts[color] = self.calibrate_color(color)
+        return stim_contrasts
 
     def experiment_step(self):
         """
@@ -59,8 +104,12 @@ class PerimetryTask(Task):
             self.state_machine.flip_window()
             all_keys = event.getKeys()
             if len(all_keys) > 0:
-                if 'space' in all_keys:
-                    response = 'seen'
+                if 'f' in all_keys:
+                    response = 'red'
+                elif 'j' in all_keys:
+                    response = 'green'
+                elif 'space' in all_keys:
+                    response = 'yellow'
                 elif 'return' in all_keys or 'enter' in all_keys:
                     response = 'not_seen'
                 elif 'q' in all_keys:
@@ -75,8 +124,12 @@ class PerimetryTask(Task):
             self.state_machine.flip_window()
             all_keys = event.getKeys()
             if len(all_keys) > 0:
-                if 'space' in all_keys:
-                    response = 'seen'
+                if 'f' in all_keys:
+                    response = 'red'
+                elif 'j' in all_keys:
+                    response = 'green'
+                elif 'space' in all_keys:
+                    response = 'yellow'
                 elif 'return' in all_keys or 'enter' in all_keys:
                     response = 'not_seen'
                 elif 'q' in all_keys:
@@ -99,10 +152,10 @@ class PerimetryTask(Task):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='The Perimetry Task')
+    parser = argparse.ArgumentParser(description='The Color Task')
     parser.add_argument('-c', '--config_file', default=None, help='optional path to config file')
     args = parser.parse_args()
-    PerimetryTask(config_file=args.config_file).run()
+    ColorTask(config_file=args.config_file).run()
 
 
 if __name__ == "__main__":

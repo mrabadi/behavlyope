@@ -18,16 +18,29 @@ Done, you now have a conda environment called `behavelyope` that has everything 
 If you are silly enough to run components of this yourself, then you can go ahead and activate 
 the conda environment with `source activate behavelyope`.  Otherwise you can use the binaries.
 
+## Getting the behavlyope package
+
+Download the behavlyope git repo and cd into it.
+
+```bash
+git clone https://github.com/mrabadi/behavlyope.git && cd behavlyope
+```
+
 ## Running Perimetry Task
 
 You can run the perimetry task and specify the config file. First, cd into the behavlyope directory.
 
 ```bash
-git clone https://github.com/mrabadi/behavlyope.git && cd behavlyope
 bash perimetryTask -c config.txt
 ```
 
 Note, you can specify your own config file.
+
+## Running the Color Task
+
+```bash
+bash colorTask -c config.txt
+```
 
 ## Convering data to csv
 

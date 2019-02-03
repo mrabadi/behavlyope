@@ -9,12 +9,19 @@ class StateMachine(object):
     The Experiment State Machine.
     """
 
-    def __init__(self, config={}):
+    COLOR_MAP = {'white': (1, 1, 1),
+                 'red': (1, 0, 0),
+                 'green': (-1, 1, -1),
+                 'yellow': (1, 1, -1)}
+
+    def __init__(self, config={}, stim_colors=['white']):
         """
         Initialize
         :param config:
         """
         self.params = defaults.load_params(config)
+        self.stim_colors = stim_colors
+        self.stim_contrasts = None
         self.distance_from_screen = self.params['distance_from_screen']
         self.monitor_width = self.params['monitor_width']
         self.monitor_pixels_x = self.params['monitor_pixels_x']
@@ -40,10 +47,10 @@ class StateMachine(object):
         self.monitor.setSizePix((self.monitor_pixels_x, self.monitor_pixels_y))
         self.conditions = self.generate_conditions()
         self.win = visual.Window((self.screen_x, self.screen_y), monitor=self.monitor, units="deg",
-                                 screen=self.screen_number, rgb=self.screen_rgb)
+                                 screen=self.screen_number, color=self.screen_rgb, colorSpace='rgb')
         self.fixation = visual.GratingStim(self.win, tex=None, mask='cross',
                                            sf=0, size=1, name='fixation', autoLog=False)
-        self.stimulus = visual.Circle(self.win, radius=self.stimulus_radius, fillColor='white')
+        self.stimulus = visual.Circle(self.win, radius=self.stimulus_radius, fillColor=self.COLOR_MAP['white'], fillColorSpace='rgb')# fillColor='white')
         self.clock = core.Clock()
         self.trial_number = 0
         self.num_conditions = len(self.conditions)
@@ -57,6 +64,11 @@ class StateMachine(object):
         self.audio_volume = self.params['audio_volume']
         self.audio_ms = self.params['audio_ms']
 
+    def set_stim_contrasts(self, stim_contrasts):
+        self.stim_contrasts = stim_contrasts
+        for color in list(self.stim_contrasts):
+            self.params[color] = self.stim_contrasts[color]
+
     # TODO: this depends on the task, should be a function that's passed in to method.
     def generate_conditions(self):
         conditions = []
@@ -66,8 +78,9 @@ class StateMachine(object):
             while y <= self.max_y:
                 if not (-self.fixation_cross_size < x < self.fixation_cross_size or
                         -self.fixation_cross_size < y < self.fixation_cross_size):
-                    for n in range(self.n_trials_per_location):
-                        conditions.append(Condition(x, y))
+                    for color in self.stim_colors:
+                        for n in range(self.n_trials_per_location):
+                            conditions.append(Condition(x, y, color=color))
                 y += self.grid_size
             x += self.grid_size
         random.shuffle(conditions)  # shuffle the conditions
@@ -99,6 +112,12 @@ class StateMachine(object):
 
     def draw_fixation(self):
         self.fixation.draw()
+
+    def set_stimulus_color(self, color):
+        self.stimulus.setUseShaders(True)
+        self.stimulus.setContrast(self.stim_contrasts[color])
+        self.stimulus.setLineColor(color=self.COLOR_MAP[color])
+        self.stimulus.setFillColor(color=self.COLOR_MAP[color])
 
     def set_stimulus_position(self, x, y):
         self.stimulus.setPos((x, y))

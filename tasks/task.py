@@ -21,7 +21,10 @@ class Task:
             if not os.path.exists(config_file):
                 sys.exit('config file path %s does not exist'%config_file)
             self.config = Util.load_config(config_file)
-        self.state_machine = StateMachine(self.config)
+        self.stim_colors = self.get_stim_colors()
+        self.state_machine = StateMachine(self.config, self.stim_colors)
+        self.stim_contrasts = self.calibrate_stim()
+        self.state_machine.set_stim_contrasts(self.stim_contrasts)
         self.audio_volume = self.state_machine.audio_volume
         self.audio_ms = self.state_machine.audio_ms
         self.save_location = self.state_machine.save_location
@@ -33,6 +36,14 @@ class Task:
     def write_trial_data(self, trial_data):
         if self.save_file is not None:
             self.save_file.write(str(trial_data) + "\n")
+
+    @abstractmethod
+    def calibrate_stim(self):
+        raise NotImplementedError('subclasses must override calibrate_stim()!')
+
+    @abstractmethod
+    def get_stim_colors(self):
+        raise NotImplementedError('subclesses must override get_stim_colors()!')
 
     @abstractmethod
     def experiment_step(self):
