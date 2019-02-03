@@ -36,11 +36,39 @@ bash perimetryTask -c config.txt
 
 Note, you can specify your own config file.
 
+### Perimetry Task Instructions
+
+The participant must specify if (s)he sees or doesn't see the stimulus. 
+
+* SPACE: participant can see stimulus.
+* RETURN: participant can NOT see stimulus.
+* q: quit the experiment.
+
 ## Running the Color Task
 
 ```bash
 bash colorTask -c config.txt
 ```
+
+### Color Task Instructions
+
+Begin by adjusting the contrast for each stimulus color. The participant will see 
+each color in sequence:
+ 
+1. Stimulus 1: (red) participant must push left and right 
+arrows until (s)he can no longer see the stimulus in right eye, then push RETURN. 
+2. Stimulus 2: (green) participant must push left and right arrows until (s)he
+can no longer see the stimulus in  left eye, then push RETURN.
+3. Stimulus 3: (yellow) participant can just push RETURN.
+
+The participant must specify if (s)he sees stimulus in left eye (red), right eye (green),
+or both eyes (yellow):
+
+* f: (left-hand) - (s)he can see stimulus with left eye only.
+* j: (right-hand) - (s)he can see stimulus with right eye only.
+* SPACE: (s)he can see stimulus with both eyes.
+* RETURN: (s)he can NOT see stimulus.
+* q: quit the experiment.
 
 ## Convering data to csv
 
