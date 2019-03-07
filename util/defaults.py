@@ -31,4 +31,5 @@ def load_params(config):
     params['screen_rgb'] = [int(c) for c in Util.get_param(config, 'screen_rgb', "0, 0, 0").split(",")]
     params['audio_volume'] = float(Util.get_param(config, 'audio_volume', 0.1))
     params['audio_ms'] = int(Util.get_param(config, 'audio_ms', 500))
+    params['stimulus_offset'] = float(Util.get_param(config, 'stimulus_offset', 0.5))
     return params

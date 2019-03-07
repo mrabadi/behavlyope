@@ -1,4 +1,5 @@
 import random
+import math
 from system.condition import Condition
 from util import defaults
 from psychopy import visual, core, monitors
@@ -34,6 +35,7 @@ class StateMachine(object):
         self.screen_rgb = self.params['screen_rgb']
         self.fixation_cross_size = self.params['fixation_cross_size']
         self.stimulus_radius = self.params['stimulus_radius']
+        self.stimulus_offset = self.params['stimulus_offset']
         self.max_x = self.x_half
         self.min_x = -self.max_x
         self.max_y = self.y_half
@@ -79,8 +81,12 @@ class StateMachine(object):
                 if not (-self.fixation_cross_size < x < self.fixation_cross_size or
                         -self.fixation_cross_size < y < self.fixation_cross_size):
                     for color in self.stim_colors:
+                        v = random.uniform(0, 1) + 2 * math.pi
                         for n in range(self.n_trials_per_location):
-                            conditions.append(Condition(x, y, color=color))
+                            theta = (2.0 * math.pi * (n + 1) / self.n_trials_per_location + v)
+                            x_offset = x - self.stimulus_offset * math.cos(theta)
+                            y_offset = y + self.stimulus_offset * math.sin(theta)
+                            conditions.append(Condition(x_offset, y_offset, color=color))
                 y += self.grid_size
             x += self.grid_size
         random.shuffle(conditions)  # shuffle the conditions

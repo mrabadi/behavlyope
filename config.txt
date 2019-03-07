@@ -5,8 +5,9 @@ x_size: 25
 y_size: 15
 grid_size: 5
 stimulus_radius: 1
+stimulus_offset: 0.5
 fixation_cross_size: 1
-prob_catch_trial: .1
+prob_catch_trial: 0.1
 n_trials_per_location: 3
 distance_from_screen: 50
 participant_id:
