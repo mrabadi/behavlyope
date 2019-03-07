@@ -58,6 +58,9 @@ class ColorTask(Task):
         self.state_machine.wait(1)
         return contrast
 
+    def set_task_name(self):
+        return 'color_task'
+
     def calibrate_stim(self):
         stim_contrasts = {}
         for color in self.stim_colors:

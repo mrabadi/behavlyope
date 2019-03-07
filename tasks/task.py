@@ -23,6 +23,7 @@ class Task:
             self.config = Util.load_config(config_file)
         self.stim_colors = self.get_stim_colors()
         self.state_machine = StateMachine(self.config, self.stim_colors)
+        self.task_name = self.set_task_name()
         self.stim_contrasts = self.calibrate_stim()
         self.state_machine.set_stim_contrasts(self.stim_contrasts)
         self.audio_volume = self.state_machine.audio_volume
@@ -36,6 +37,10 @@ class Task:
     def write_trial_data(self, trial_data):
         if self.save_file is not None:
             self.save_file.write(str(trial_data) + "\n")
+
+    @abstractmethod
+    def set_task_name(self):
+        raise NotImplementedError('subclasses must override set_task_name()!')
 
     @abstractmethod
     def calibrate_stim(self):
@@ -65,7 +70,9 @@ class Task:
             os.makedirs(self.save_location)
         self.save_file = open(save_file_path, "w")
         self.state_machine.params['start_time'] = start_time
-        self.save_file.write('params: ' + str(self.state_machine.params) + "\n")
+        params = self.state_machine.params
+        params['task_name'] = self.task_name
+        self.save_file.write('params: ' + str(params) + "\n")
         while self.state_machine.trial_number < self.state_machine.num_conditions and not self.quit_task:
             all_keys = event.getKeys()
             # quit task if q is pushed.

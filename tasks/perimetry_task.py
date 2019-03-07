@@ -16,6 +16,9 @@ class PerimetryTask(Task):
         """
         return ['white']
 
+    def set_task_name(self):
+        return 'perimetry_task'
+
     def calibrate_stim(self):
         return {'white': 1}
 
