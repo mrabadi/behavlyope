@@ -58,7 +58,10 @@ class ColorTask(Task):
         self.state_machine.wait(1)
         return contrast
 
-    def set_task_name(self):
+    def get_fixation_colors(self):
+        return ['red', 'green']
+
+    def get_task_name(self):
         return 'color_task'
 
     def calibrate_stim(self):
@@ -79,10 +82,11 @@ class ColorTask(Task):
                       'x': trial_condition.x,
                       'y': trial_condition.y,
                       'color': trial_condition.color,
+                      'fixation_color': trial_condition.fixation_color,
                       'isi': isi,
                       'presentation_time': presentation_time,
                       'catch_trial': False}
-
+        self.state_machine.set_fixaction_color(trial_condition.fixation_color)
         self.state_machine.draw_fixation()
         self.state_machine.flip_window()
         self.state_machine.wait(isi / 1000.)

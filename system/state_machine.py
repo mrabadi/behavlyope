@@ -15,13 +15,14 @@ class StateMachine(object):
                  'green': (-1, 1, -1),
                  'yellow': (1, 1, -1)}
 
-    def __init__(self, config={}, stim_colors=['white']):
+    def __init__(self, config={}, stim_colors=['white'], fixation_colors=['white']):
         """
         Initialize
         :param config:
         """
         self.params = defaults.load_params(config)
         self.stim_colors = stim_colors
+        self.fixation_colors = fixation_colors
         self.stim_contrasts = None
         self.distance_from_screen = self.params['distance_from_screen']
         self.monitor_width = self.params['monitor_width']
@@ -81,12 +82,13 @@ class StateMachine(object):
                 if not (-self.fixation_cross_size < x < self.fixation_cross_size or
                         -self.fixation_cross_size < y < self.fixation_cross_size):
                     for color in self.stim_colors:
-                        v = random.uniform(0, 1) + 2 * math.pi
-                        for n in range(self.n_trials_per_location):
-                            theta = (2.0 * math.pi * (n + 1) / self.n_trials_per_location + v)
-                            x_offset = x - self.stimulus_offset * math.cos(theta)
-                            y_offset = y + self.stimulus_offset * math.sin(theta)
-                            conditions.append(Condition(x_offset, y_offset, color=color))
+                        for fixation_color in self.fixation_colors:
+                            v = random.uniform(0, 1) + 2 * math.pi
+                            for n in range(self.n_trials_per_location):
+                                theta = (2.0 * math.pi * (n + 1) / self.n_trials_per_location + v)
+                                x_offset = x - self.stimulus_offset * math.cos(theta)
+                                y_offset = y + self.stimulus_offset * math.sin(theta)
+                                conditions.append(Condition(x_offset, y_offset, color=color, fixation_color=fixation_color))
                 y += self.grid_size
             x += self.grid_size
         random.shuffle(conditions)  # shuffle the conditions
@@ -115,6 +117,11 @@ class StateMachine(object):
 
     def increment_trial_number(self):
         self.trial_number += 1
+
+    def set_fixaction_color(self, color):
+        self.fixation.setUseShaders(True)
+        self.fixation.setContrast(self.stim_contrasts[color])
+        self.fixation.setColor(color=self.COLOR_MAP[color])
 
     def draw_fixation(self):
         self.fixation.draw()

@@ -16,7 +16,14 @@ class PerimetryTask(Task):
         """
         return ['white']
 
-    def set_task_name(self):
+    def get_fixation_colors(self):
+        """
+        Generate the fixation colors for task (white).
+        :return: List of fixation colors.
+        """
+        return ['white']
+
+    def get_task_name(self):
         return 'perimetry_task'
 
     def calibrate_stim(self):
@@ -34,10 +41,11 @@ class PerimetryTask(Task):
                       'x': trial_condition.x,
                       'y': trial_condition.y,
                       'color': trial_condition.color,
+                      'fixation_color': trial_condition.fixation_color,
                       'isi': isi,
                       'presentation_time': presentation_time,
                       'catch_trial': False}
-
+        self.state_machine.set_fixaction_color(trial_condition.fixation_color)
         self.state_machine.draw_fixation()
         self.state_machine.flip_window()
         self.state_machine.wait(isi / 1000.)

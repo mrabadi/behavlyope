@@ -22,8 +22,9 @@ class Task:
                 sys.exit('config file path %s does not exist'%config_file)
             self.config = Util.load_config(config_file)
         self.stim_colors = self.get_stim_colors()
-        self.state_machine = StateMachine(self.config, self.stim_colors)
-        self.task_name = self.set_task_name()
+        self.fixation_colors = self.get_fixation_colors()
+        self.state_machine = StateMachine(self.config, self.stim_colors, self.fixation_colors)
+        self.task_name = self.get_task_name()
         self.stim_contrasts = self.calibrate_stim()
         self.state_machine.set_stim_contrasts(self.stim_contrasts)
         self.audio_volume = self.state_machine.audio_volume
@@ -39,8 +40,8 @@ class Task:
             self.save_file.write(str(trial_data) + "\n")
 
     @abstractmethod
-    def set_task_name(self):
-        raise NotImplementedError('subclasses must override set_task_name()!')
+    def get_task_name(self):
+        raise NotImplementedError('subclasses must override get_task_name()!')
 
     @abstractmethod
     def calibrate_stim(self):
@@ -48,7 +49,11 @@ class Task:
 
     @abstractmethod
     def get_stim_colors(self):
-        raise NotImplementedError('subclesses must override get_stim_colors()!')
+        raise NotImplementedError('subclasses must override get_stim_colors()!')
+
+    @abstractmethod
+    def get_fixation_colors(self):
+        raise NotImplementedError('subclasses must override get_fixation_color()!')
 
     @abstractmethod
     def experiment_step(self):
