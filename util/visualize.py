@@ -147,6 +147,8 @@ def visualize_perimetry_task(params, data, save_dir):
 
 
 def visualize(fn, save_dir):
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
     params = None
     data = []
     with open(fn) as f:
